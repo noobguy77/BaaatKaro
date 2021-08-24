@@ -8,5 +8,15 @@
 </head>
 <body>
     <h1>BaatKaro jaldi</h1>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        let socket = io();
+        socket.on('connect',()=>{
+            console.log("Connected");
+        });
+        socket.on('disconnect',()=>{
+            console.log("disConnected");
+        });
+    </script>
 </body>
 </html>
