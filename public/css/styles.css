@@ -35,18 +35,18 @@ h3 {
 }
 
 button {
-    background: #265f82;
+    background: #e4ba12;
     cursor: pointer;
     transition: background .3s ease
 }
 
 button:hover {
-    background: #1F4C69
+    background: #f0d980;
 }
 
 button:disabled {
     cursor: default;
-    background: #698ea5
+    background: #FEE996;
 }
 
 .centered-form {
@@ -55,21 +55,17 @@ button:disabled {
     height: 100vh;
     width: 100vw;
     justify-content: center;
-    background: -moz-linear-gradient(125deg, rgba(39, 107, 130, 1) 0, rgba(49, 84, 129, 1) 100%);
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0, rgba(49, 84, 129, 1)), color-stop(100%, rgba(39, 107, 130, 1)));
-    background: -webkit-linear-gradient(125deg, rgba(39, 107, 130, 1) 0, rgba(49, 84, 129, 1) 100%);
-    background: -o-linear-gradient(125deg, rgba(39, 107, 130, 1) 0, rgba(49, 84, 129, 1) 100%);
-    background: -ms-linear-gradient(125deg, rgba(39, 107, 130, 1) 0, rgba(49, 84, 129, 1) 100%);
-    background: linear-gradient(325deg, rgba(39, 107, 130, 1) 0, rgba(49, 84, 129, 1) 100%)
+    background: #f7f6f5;
 }
 
 .centered-form__form {
     background: rgba(250, 250, 250, .9);
-    border: 1px solid #e1e1e1;
+    border: 2px solid #181616;
     border-radius: 5px;
     padding: 0 20px;
     margin: 20px;
-    width: 230px
+    width: 430px;
+    height: 400pxs;
 }
 
 .form-field {
@@ -80,9 +76,14 @@ button:disabled {
     width: 100%
 }
 
+.form-field h3 {
+    font-size: 35px;
+}
+
 .form-field label {
     display: block;
-    margin-bottom: 7px
+    margin-bottom: 7px;
+    font-size: 20px;
 }
 
 .form-field input,
