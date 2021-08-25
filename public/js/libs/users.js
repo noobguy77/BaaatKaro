@@ -1,6 +1,7 @@
 class Users {
     constructor() {
         this.users = [];
+        this.rooms = [];
     }
 
     addUser(id, name, room) {
@@ -10,6 +11,7 @@ class Users {
             room
         };
         this.users.push(user);
+        this.rooms.push(user);
         return user;
     }
 
@@ -18,6 +20,15 @@ class Users {
         let namesArray = users.map((user) => user.name);
 
         return namesArray;
+    }
+    getRoomsList() {
+        this.rooms = [];
+        this.users.forEach((user) => {
+            if (this.rooms.includes(user.room) === false) {
+                this.rooms.push(user.room);
+            }
+        });
+        return this.rooms;
     }
 
     getUser(id) {

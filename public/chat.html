@@ -11,9 +11,16 @@
   <body class="chat">
 
     <div class="chat__sidebar">
-      <h3>Users online</h3>
+      <h3>Users online in this room</h3>
+      <!-- <h2>in this room</h2> -->
       <div id="users"></div>
+      <h3>Rooms online</h3>
+      <div id="rooms"></div>
     </div>
+    <!-- <div class="chat__sidebar">
+      <h3>Rooms online</h3>
+      <div id="rooms"></div>
+    </div> -->
 
     <div class="chat__main">
       <ol id="messages" class="chat__messages"></ol>
@@ -86,14 +93,37 @@
           scrolltoBottom();
       })
       socket.on('disconnect', () => {
+          //when user leaves we need to update the list
           console.log("disConnected");
       });
 
+      socket.on('updateUsersList', function(users){
+        let ol = document.createElement('ol');
+        users.forEach(function (user) {
+          let li = document.createElement('li');
+          li.innerHTML = user;
+          ol.appendChild(li);
+        });
+        let usersList = document.querySelector('#users');
+        usersList.innerHTML="";
+        usersList.appendChild(ol);
+      })
+      socket.on('updateRoomsList', function(rooms){
+        let ol = document.createElement('ol');
+        rooms.forEach(function (room) {
+          let li = document.createElement('li');
+          li.innerHTML = room;
+          ol.appendChild(li);
+        });
+        let roomsList = document.querySelector('#rooms');
+        roomsList.innerHTML="";
+        roomsList.appendChild(ol);
+        // console.log(rooms);
+      })
       document.querySelector('#submit-btn').addEventListener('click', function (e) {
           //prevent refresh while sending message
           e.preventDefault();
           socket.emit('createMessage', {
-              from: "User",
               text: document.querySelector('input[name="message"]').value
           }, function () {
               document.querySelector('input[name="message"]').value="";
