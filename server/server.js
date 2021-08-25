@@ -17,9 +17,9 @@ io.on('connection', (socket) => {
     console.log("Socket!");
     //socket is like 1 to 1 connection
     //.emit is for the new user who just joined
-    socket.emit('newMessage', generateMessage("Admin", "Welcome biatch"));
+    socket.emit('newMessage', generateMessage("Bot", "Welcome biatch"));
     //broadcast.emit to send stuff to already connected users
-    socket.broadcast.emit('newMessage', generateMessage("Admin", "New biatch has arrived"));
+    socket.broadcast.emit('newMessage', generateMessage("Bot", "New biatch has arrived"));
     //when we want to broadcast it to the whole room we use io
     socket.on('createMessage', function (message, callback) {
         console.log("crate message ", message);

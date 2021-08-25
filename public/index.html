@@ -1,19 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BaatKaro</title>
-</head>
-<body>
-    <h1>BaatKaro</h1>
-    <form action="" id="message-form">
-        <input type="text" name="message" placeholder="your message">
-        <button type="submit" id="submit-btn">Submit</button>
-    </form>
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="js/index.js">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, inital-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+  </head>
+  <body class="chat">
+
+    <div class="chat__sidebar">
+      <h3>Users online</h3>
+      <div id="users"></div>
+    </div>
+
+    <div class="chat__main">
+      <ol id="messages" class="chat__messages"></ol>
+
+      <div class="chat__footer">
+        <form id="message-form">
+          <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+          <button id="submit-btn">Send</button>
+        </form>
+      </div>
+    </div>
+    
+    <script id="message-template" type="text/template">
+      <li class="message">
+        <div class="message__title">
+          <h4>{{from}}</h4>
+          <span>{{createdAt}}</span>
+        </div>
+        <div class="message_body">
+          <p>{{text}}</p>
+        </div>
+      </li>
     </script>
-</body>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- time formatting library -->
+    <script type="text/javascript" src="js/libs/moment.js"></script>
+    <script type="text/javascript" src="js/libs/mustache.js"></script>
+    <!-- <script type="text/javascript" src="js/index.js"></script> -->
+    <!-- index.js is included here because god knows why it isnt working in a seperate file -->
+    <script>
+      let socket = io();
+      socket.on('connect', () => {
+          console.log("Connected");
+      });
+      //message is received from server
+      socket.on('newMessage', function (message) {
+          const formattedTime = moment(message.createdAt).format('LT');
+          const template = document.querySelector('#message-template').innerHTML;
+          console.log(template);
+          const html = Mustache.render(template, {
+            from: message.from,
+            text: message.text,
+            createdAt: formattedTime
+          });
+          const div = document.createElement('div');
+          div.innerHTML= html ;
+          // console.log(html);
+          document.querySelector('#messages').appendChild(div);
+          // console.log("lol");
+          // const formattedTime = moment(message.createdAt).format('LT');
+          // console.log('new message ', message);
+          // let li = document.createElement('li');
+          // li.innerText = message.from + " : " + message.text + "    " + formattedTime;
+          // document.querySelector('#messages').appendChild(li);
+      })
+      socket.on('disconnect', () => {
+          console.log("disConnected");
+      });
+
+      document.querySelector('#submit-btn').addEventListener('click', function (e) {
+          //prevent refresh while sending message
+          e.preventDefault();
+          socket.emit('createMessage', {
+              from: "User",
+              text: document.querySelector('input[name="message"]').value
+          }, function () {
+              console.log("yo recieved");
+          })
+      })
+    </script>
+  </body>
 </html>
