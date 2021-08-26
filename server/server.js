@@ -14,14 +14,16 @@ const {
 } = require('./utils/isRealString');
 const {
     Users
-} = require('../public/js/libs/users');
-const port = process.env.PORT || 3000;
+} = require('./utils/users');
+const port = process.env.PORT || 6969;
 const app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 let users = new Users();
 
 app.use(express.static(publicPath));
+
+
 
 io.on('connection', (socket) => {
     console.log("Socket!");
@@ -31,7 +33,7 @@ io.on('connection', (socket) => {
         //for empty fields while joining
         if (!isRealString(params.name) || !isRealString(params.room)) {
 
-            callback("Name and room are req");
+            callback("Name a nd room are req");
         }
         //this id joins this room
         socket.join(params.room);
