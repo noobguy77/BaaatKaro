@@ -5,11 +5,21 @@
     <title>BaatKaro</title>
     <meta name="viewport" content="width=device-width, inital-scale=1, user-scalable=no">
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
   </head>
+  <div class="title_logo">
+    <h1>BaatKaro</h1>
+    <h2>Messaging Application</h2>
+    <!-- <h4>Jayanth Naidu</h4> -->
+    <!-- <div class="space"></div> -->
+    <h3>Rooms online</h3>
+    <div id="rooms"></div>
+  </div>
   <body class="centered-form">
     <div class="centered-form__form">
       <form action="/chat.html">
-        <div class="form-field"><h3>Join Chat</h3></div>
+        <div class="form-field"><h3>Join/Create a Room</h3></div>
         <div class="form-field">
           <label>User name</label>
           <input type="text" name="name" autofocus>
@@ -26,3 +36,20 @@
 
   </body>
 </html>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  let socket = io();
+  socket.on('connect', () => {
+      var users=['r1','r2'];
+      let ol = document.createElement('ol');
+      users.forEach(function (user) {
+        // console.log(users,"lol");
+        let li = document.createElement('li');
+        li.innerHTML = user;
+        ol.appendChild(li);
+      });
+      let usersList = document.querySelector('#rooms');
+      usersList.innerHTML="";
+      usersList.appendChild(ol);
+  });
+</script>

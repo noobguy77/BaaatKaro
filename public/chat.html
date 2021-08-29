@@ -11,11 +11,18 @@
   <body class="chat">
 
     <div class="chat__sidebar">
+      <h3 id="room_status"></h3>
+      <div id="space">
+      </div>
       <h3>Users online in this room</h3>
       <!-- <h2>in this room</h2> -->
       <div id="users"></div>
+      <div id="space">
+      </div>
       <h3>Rooms online</h3>
       <div id="rooms"></div>
+      <div id="space">
+      </div>
     </div>
     <!-- <div class="chat__sidebar">
       <h3>Rooms online</h3>
@@ -67,6 +74,9 @@
               window.location.href = '/';
             }else {
               console.log('No Error');
+              let status = document.querySelector('#room_status');
+              status.innerHTML = 'You are in room '+params.room;
+              console.log("lol status");
             }
           })
       });
@@ -98,8 +108,10 @@
       });
 
       socket.on('updateUsersList', function(users){
+        // console.log(users,"chat,html");
         let ol = document.createElement('ol');
         users.forEach(function (user) {
+          // console.log(users,"lol");
           let li = document.createElement('li');
           li.innerHTML = user;
           ol.appendChild(li);
