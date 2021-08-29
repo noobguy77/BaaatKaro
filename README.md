@@ -16,7 +16,7 @@ This repository contains a chat application which is created using MongoDB, Sock
 - User can view other rooms which are active at that point of time.
 - User can view the room they are in.
 
-## Usage Guide -
+## Installation Guide -
 
 1. Install [Node.js](https://nodejs.org/) and [MongoDB](https://www.mongodb.com/) on your system(or you could use MongoDB Atlas). Check using the following commands in the terminal -
 
