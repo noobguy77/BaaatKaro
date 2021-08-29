@@ -85,8 +85,8 @@ io.on('connection', (socket) => {
     })
     socket.on('disconnect', async () => {
         //when user leaves we need to update the list
-        let user1 = users.removeUser(socket.id);
-        let user = await users.removeUserfromdb(socket.id);
+        // let user1 = users.removeUser(socket.id);
+        let user1 = await users.removeUserfromdb(socket.id);
         console.log(user1, "this is user1");
         if (user1) {
             io.to(user1.room).emit('updateUsersList', users.getUserList(user1.room));
