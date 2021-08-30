@@ -14,7 +14,7 @@ This repository contains a chat application which is created using MongoDB, Sock
 - User can join an existing public conversation room.
 - User can view other users who are online in the room.
 - User can view other rooms which are active at that point of time.
-- User can view the room they are in.
+- User can know the room they are in.
 
 ## Installation Guide -
 
