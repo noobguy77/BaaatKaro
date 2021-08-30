@@ -24,7 +24,6 @@ This repository contains a chat application which is created using MongoDB, Sock
 $ node -v
 $ mongod --version
 ```
-
 2. Open your terminal and run the following -
 
 ```cmd
@@ -32,10 +31,15 @@ $ fork the repo
 $ git clone <clone link>
 $ cd <project path>
 $ npm install
+```
+3. . Go to config/keys.js and paste ur MongoDB URL.
+
+4.
+```
 $ node server/server.js
 ```
 
-3. Now, the server is running, open the link http://localhost:6969 to access the application
+5. Now, the server is running, open the link http://localhost:6969 to access the application
 
 
 
