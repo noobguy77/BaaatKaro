@@ -25,9 +25,8 @@ $ node -v
 $ mongod --version
 ```
 2. Open your terminal and run the following -
-
+fork the repo
 ```cmd
-$ fork the repo
 $ git clone <clone link>
 $ cd <project path>
 $ npm install
