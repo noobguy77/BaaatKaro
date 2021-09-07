@@ -1,5 +1,5 @@
 # BaatKaro (A ChatRoom application)
-This repository contains a chat application which is created using MongoDB, Socket.io and Express that supports real-time chatting and also allows to retrieve chat when logged in later.
+This repository contains a chat application which is created using MongoDB, Socket.io and Express that supports real-time chatting.
 
 ## Tech-stack -
 - HTML, CSS (for front-end interface)
